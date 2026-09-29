@@ -1,0 +1,20 @@
+import { chromium } from 'playwright'
+const b = await chromium.launch()
+const p = await b.newPage({ viewport: { width: 390, height: 844 } })
+const B = 'http://127.0.0.1:5173'
+await p.goto(B + '/work', { waitUntil: 'networkidle' })
+await p.evaluate(() => window.scrollTo(0, 900))
+await p.waitForTimeout(400)
+await p.screenshot({ path: 'verify-shots/e-mobile-grid2.png' })
+await p.evaluate(() => window.scrollTo(0, 0))
+await p.locator('.photo-button').first().click()
+await p.locator('.lightbox').waitFor()
+await p.waitForTimeout(400)
+await p.screenshot({ path: 'verify-shots/e2-lightbox-mobile.png' })
+// hamburger menu
+await p.keyboard.press('Escape')
+await p.locator('.menu').click()
+await p.waitForTimeout(300)
+await p.screenshot({ path: 'verify-shots/e3-mobile-menu.png' })
+await b.close()
+console.log('ok')

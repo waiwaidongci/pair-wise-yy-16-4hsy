@@ -13,3 +13,9 @@ playwright-report/
 .vscode/
 trajectory.jsonl
 trajectory.md.jsonl
+
+# synced from mock-data/ and assets/fonts (see scripts/sync-assets.mjs)
+public/fonts/
+public/photos/
+src/data/photos.json
+*.tsbuildinfo
